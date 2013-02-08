@@ -9,31 +9,16 @@
 #include <algorithm>
 #include <cassert>
 
+#include "common.hpp"
+
 using namespace std;
 using namespace Eigen;
 
-/** Get data from files**/
-void GetData(string filename, int rows, int cols, MatrixXd &m){
-    string line;
-    ifstream myfile(filename.c_str());
-    m.resize(rows, cols);
-    if(myfile.is_open()){
-	int i = 0;
-	while(myfile.good() && i< rows){
-	    for(int j= 0; j<cols; j++){
-		myfile >> m(i,j);
-	    }
-	    i++;
-	}
-    }
-    else{
-	cerr << "Error open file!" <<endl;
-	exit(1);
-    }
-}
-
 int main(int argc, char *argv[]){
     MatrixXd trainData, trainLabel, testData, testLabel, weight, tmpMatrix;
+    int option = argc > 1 ? atoi(argv[1]) : 1;
+    if(option!=1 && option!=2)
+	option = 1;
     srand(time(NULL));
     /*Initialize matrix*/
     trainData.resize(100,3);
@@ -62,33 +47,36 @@ int main(int argc, char *argv[]){
     testLabel.block(20,0,20,1).fill(1);
 
     /*Using Widrow-Hoff training method*/
-#if(1)
-    // 1. Set the weights to small random values
-    weight.setRandom();
+    if(option == 1){
+	// 1. Set the weights to small random values
+	weight.setRandom();
     
-    // 2. Set the learning rate to a small number compare to 1
-    double learningRate = 0.1;
-    // 3. Repeat until error is low enough
-    double error = 100;
-    int iterations = 0;
-    while(error>0.001 && iterations++<100){
-	error = 0;
-	MatrixXd tmp = trainData*weight-trainLabel;
-	weight-= learningRate/100.0*trainData.transpose()*tmp;
-	error+=tmp.squaredNorm()/200.0;
-	cout <<error << endl;
-	cout << weight.transpose() <<endl;
+	// 2. Set the learning rate to a small number compare to 1
+	double learningRate = 0.1;
+	// 3. Repeat until error is low enough
+	double error = 100;
+	int iterations = 0;
+	while(error>0.001 && iterations++<100){
+	    error = 0;
+	    MatrixXd tmp = trainData*weight-trainLabel;
+	    weight-= learningRate/100.0*trainData.transpose()*tmp;
+	    error+=tmp.squaredNorm()/200.0;
+	}
+	cout << weight <<endl;
     }
-    cout << weight <<endl;
-#endif
+    else {
+	/*Calculate the weight by pseudo-inverse matrix*/
+	weight = (trainData.transpose()*trainData).inverse()*trainData.transpose()*trainLabel;
+	cout <<weight <<endl;
+    }
 
-
-    /*Using pseudo inverse*/
-#if(0)
-    /*Calculate the weight by pseudo-inverse matrix*/
-    weight = (trainData.transpose()*trainData).inverse()*trainData.transpose()*trainLabel;
-    cout <<weight <<endl;
-#endif
-
+    MatrixXd testOutput = testData*weight;
+    int rate = 0;
+    for(int i = 0; i<40; i++){
+	testOutput(i) = testOutput(i) > 0 ? 1 : -1;
+	if(testOutput(i) == testLabel(i))
+	    rate++;
+    }
+    cout << "Precision's rate: " << (double)rate/40 <<endl;
     return 0;
 }
