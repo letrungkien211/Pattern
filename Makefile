@@ -5,7 +5,7 @@ RM = rm -f
 CFLAGS	= -Wall -g -O2
 INCLUDES= -I/usr/include/eigen3 
 
-TARGET	= 1
+TARGET	= 2
 all:	$(TARGET)
 
 

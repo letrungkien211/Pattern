@@ -9,8 +9,11 @@
 #include <algorithm>
 #include <cassert>
 
+#include "common.hpp"
+
 using namespace std;
 using namespace Eigen;
+
 
 /** Get data from files**/
 void GetData(string filename, int rows, int cols, MatrixXd &m){
@@ -32,7 +35,7 @@ void GetData(string filename, int rows, int cols, MatrixXd &m){
     }
 }
 
-int main(int argc, char *argv[]){
+
     MatrixXd trainData, trainLabel, testData, testLabel, weight, tmpMatrix;
     srand(time(NULL));
     /*Initialize matrix*/
