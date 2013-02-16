@@ -71,11 +71,15 @@ int main(int argc, char *argv[]){
     testLabel.block(20,0,20,1).fill(1);
 
     /*Cross validation- Leave-one-out method*/
+    int bestK = 1;
+    double bestRate = 0;
     for(int nk = 1; nk <=10; nk++){
 	MatrixXd trainDataLeave, trainLabelLeave;
+	MatrixXd testDataLeave, testOutputLeave;
 	trainDataLeave.resize(trainData.rows()-1,2);
 	trainLabelLeave.resize(trainData.rows()-1,1);
-
+	testDataLeave.resize(1,2);
+	testOutputLeave.resize(1,1);
 	int sumRate = 0;
 	for(int l = 0; l < trainData.rows(); l++){
 	    int cnt = 0;
@@ -86,14 +90,29 @@ int main(int argc, char *argv[]){
 		    cnt++;
 		}
 	    }
-	    kNN(trainDataLeave, trainLabelLeave, testData, testOutput, nk);
-	    for(int i = 0; i<40; i++){
-		if(testOutput(i) == testLabel(i))
-		    sumRate++;
-	    }
+	    testDataLeave = trainData.row(l);
+	    testOutputLeave = trainLabel.row(l);
+	    kNN(trainDataLeave, trainLabelLeave, testDataLeave, testOutputLeave, nk);
+	    if(testOutputLeave(0) == trainLabel(l))
+		sumRate++;
 	}
 	cout << "KNN: "<< nk <<endl;
-	cout << "Precision's rate: " << (double)sumRate/(40.0*trainData.rows()) <<endl;
+	double rate = (double)sumRate/(trainData.rows());
+	cout << "Precision's rate: " << rate <<endl;
+	if(bestRate < rate){
+	    bestRate = rate;
+	    bestK = nk;
+	}
     }
+
+    kNN(trainData, trainLabel, testData, testOutput, bestK);
+    int tmp = 0;
+    for(int i = 0; i<40; i++){
+	if(testOutput(i) == testLabel(i))
+	    tmp++;
+    }
+    double rate = (double)tmp/40;
+    cout << "Best K: " << bestK <<endl;
+    cout << "Precision rate: "<< rate << endl;
     return 0;
 }
