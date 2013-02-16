@@ -76,6 +76,4 @@ int main(int argc, char** argv){
 	}
     }
     cout << distance <<endl;
-    cout << "7" << endl;
 }
-
