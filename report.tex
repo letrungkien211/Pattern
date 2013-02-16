@@ -1,0 +1,73 @@
+\documentclass[a4paper, 11pt]{article}
+
+%%% Packages
+\usepackage[margin=50pt, vmargin={50pt, 10pt},includefoot]{geometry}
+\usepackage{palatino}
+
+%%% Listing package
+\usepackage{listings}
+\usepackage{color}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\hypersetup{
+  colorlinks = false,
+  pdfborder={0 0 0}
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{red}{rgb}{0.8,0,0}
+\definecolor{dkblue}{rgb}{0,0,0.6}
+
+\lstset{ 
+  language=C++,                  % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color 
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        %sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
+  keywordstyle=\color{blue},         % keyword style
+  keywordstyle=[2]\color{dkgreen},
+  commentstyle=\color{red},       %comment style
+  keywords=[2]{vector, Action, State},
+  stringstyle=\color{mauve},         %string literal style
+  escapeinside={\%*}{*)},            % if you want to add LaTeX within your code
+  emph={string, Puzzle, Board, multiset},  % emphasized characters
+  emphstyle={\color{dkgreen}}
+}
+
+%%% End listing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{document}
+\title{Pattern Informatics Report}
+\author{Le Trung Kien\\ 
+  03-120291, 3rd Year \\
+  Department of Mechano-Informatics \\ 
+  The University of Tokyo
+}
+\maketitle
+
+\section{Widrow-Hoff Algorithm}
+
+\section{Pseudo-Inverse Matrix}
+
+\section{Leave-one-out Method}
+
+\section{Mahalanobis Distance}
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

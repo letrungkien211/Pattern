@@ -1,0 +1,188 @@
+\documentclass[a4paper, 11pt]{article}
+
+%%% Packages
+\usepackage[margin=50pt, vmargin={50pt, 10pt},includefoot]{geometry}
+\usepackage{palatino}
+
+%%% Listing package
+\usepackage{listings}
+\usepackage{color}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\hypersetup{
+  colorlinks = false,
+  pdfborder={0 0 0}
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{red}{rgb}{0.8,0,0}
+\definecolor{dkblue}{rgb}{0,0,0.6}
+
+\lstset{ 
+  language=C++,                  % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color 
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        %sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
+  keywordstyle=\color{blue},         % keyword style
+  keywordstyle=[2]\color{dkgreen},
+  commentstyle=\color{red},       %comment style
+  keywords=[2]{vector, Action, State},
+  stringstyle=\color{mauve},         %string literal style
+  escapeinside={\%*}{*)},            % if you want to add LaTeX within your code
+  emph={string, Puzzle, Board, multiset},  % emphasized characters
+  emphstyle={\color{dkgreen}}
+}
+
+%%% End listing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{document}
+\title{Pattern Informatics Report}
+\author{Le Trung Kien\\ 
+  03-120291, 3rd Year \\
+  Department of Mechano-Informatics \\ 
+  The University of Tokyo \\ \\
+}
+
+\section*{Note}
+
+
+\end{itemize}
+\begin{verbatim}
+@:~/Dropbox/git/Pacman$ make
+g++ -Wall -g -O2 -c -o state.o state.cpp
+g++ -Wall -g -O2 -c -o common.o common.cpp
+g++ -Wall -g -O2 -c -o minimaxAgent.o minimaxAgent.cpp
+g++ -Wall -g -O2 -c -o utility.o utility.cpp
+g++ -Wall -g -O2 -c -o alphabetaAgent.o alphabetaAgent.cpp
+g++ -Wall -g -O2 -c -o main.o main.cpp
+g++ -Wall -g -O2 -o main state.o common.o minimaxAgent.o utility.o alphabetaAgent.o main.o -lglut -lGL -lGLU
+@:~/Dropbox/git/Pacman$ ./main a 12 10 -5 5
+XXXXXXXXXXXXXXXXXXXX
+X----X---GG---X----X
+X-XX-X-XXXXXX-X-XX-X
+X-X--------------X-X
+X-X-XX-XX  XX-XX-X-X
+X------X    X------X
+X-X-XX-XXXXXX-XX-X-X
+X-X--------------X-X
+X-XX-X-XXXXXX-X-XX-X
+X----X---P----X----X
+XXXXXXXXXXXXXXXXXXXX
+Number of food left: 100
+Number of Evaluate: 10247
+Minvalue: 250
+Ghost Minimax Move: (L, R, )
+XXXXXXXXXXXXXXXXXXXX
+X----X--G--G--X----X
+X-XX-X-XXXXXX-X-XX-X
+X-X--------------X-X
+X-X-XX-XX  XX-XX-X-X
+X------X    X------X
+X-X-XX-XXXXXX-XX-X-X
+X-X--------------X-X
+X-XX-X-XXXXXX-X-XX-X
+X----X----P---X----X
+XXXXXXXXXXXXXXXXXXXX
+Number of food left: 99
+.........................................................
+Number of Evaluate: 1499
+Minvalue: 70
+Ghost Minimax Move: (L, L, )
+XXXXXXXXXXXXXXXXXXXX
+X----X--------X----X
+X-XX-X-XXXXXX-X-XX-X
+X-X---G----------X-X
+X-X-XX-XX  XX-XX-X-X
+X-----PX    X------X
+X-X-XX XXXXXX-XX-X-X
+X-X--- G      ---X-X
+X-XX-X-XXXXXX X-XX-X
+X----X----    X----X
+XXXXXXXXXXXXXXXXXXXX
+Number of food left: 85
+Number of Evaluate: 2266
+Minvalue: -1e+06
+Ghost Minimax Move: (D, L, )
+Pacman: LOSE
+\end{verbatim}
+
+\subsection{Minimax vs Alphabeta Pruning}
+The following table shows comparision between Minimax and Alphabeta Pruning in term of number of evaluated nodes. The depth is set as 12.
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|c|c|r|r|}
+    \hline
+    Pacman Move & Ghost Moves & Minimax & Alphabeta Pruning \\ \hline
+    r           & l,r         & 5824    & 1936              \\ \hline
+    r           & l,r         & 5299    & 1554              \\ \hline
+    r           & l,r         & 10514   & 1478              \\ \hline
+    r           & d,d         & 22021   & 2182              \\ \hline
+    u           & d,d         & 61080   & 1855              \\ \hline
+    u           & r,d         & 286179  & 20064             \\ \hline
+    r           & r,d         & 49025   & 1119              \\ \hline
+    r           & r,d         & 109956  & 3288              \\ \hline
+    r           & r,d         & 66916   & 5059              \\ \hline
+    u           & r,r         & 66804   & 9269              \\ \hline 
+    u           & r,r         & 17848   & 2193              \\ \hline
+    l           & r,r         & 13621   & 1660              \\ \hline
+    l           & d,u         & 17056   & 1673              \\ 
+    \hline
+  \end{tabular}
+\end{table}
+Clearly Alphabeta pruning is much more efficient than Minimax. Notice that number of evaluated nodes varies a lot due to the different number of legal moves. Alphabeta pruning performance also depends on the order of examined nodes. The sooner the best move is found, the more nodes can be pruned. 
+
+\section{Game State}
+The State class, which represents the Game state take me lots of hours to complete. It was hard to think from how to represent the game state to how to make transition from a state to another. The class declaration is shown in the following Listing.
+\lstset{language=C++, caption={state class (state.hpp)}}
+\lstinputlisting[linerange={10-68}]{state.hpp}
+Please refer to the source code \textbf{state.cpp} for more details about this class. 
+\section{Discussion}
+Firstly, I want to talk about the Evaluation function. As mentioned above, this function is the most important aspect of Minimax and Alphabeta pruning algorithm. In a limited time, I think I considered a very simple version of it. In order to optimize the Evaluation function, we can add more features to it, and try to combine features in more sophisticated way such as Neural Network. I think it is possible to combine Neural Network and Genetic Algorithm to find the optimal evaluation function to this problem. That is maybe the theme for my next report. \\
+Secondly, Alphabeta pruning is much more efficient than Minimax algorithm. In real applications, probably minimax will never be used. The game now is a deterministic one, however, if uncertainty is taken into account, we have an other algorithm called Expectimax. In this case, opponents do not always take their best moves, they sometimes take other moves which produce different outcomes. \\
+This is currently the most interesting report I have done so far. AI ghosts look very cool. I think the current version makes ghosts quite strong opponents for Pacman, still, it has flaws. I will continue developing the project even after submitting this report. My next target will be making a strong AI version of Pacman.
+\begin{thebibliography}{9}
+\bibitem{AIMA}
+  \label{itm:AIMA}
+  Stuart Russell, Peter Norvig
+  \emph{  Aritifical Intelligence A Modern Approach},
+  Prentice Hall
+  3rd Edition,
+  December 2009
+
+\bibitem{SSCPS}
+  \label{itm:SSCPS}
+  George F. Luger
+  \emph{Artificial Intelligence, Structure and Strategies for Complex Problem Solving},
+  Addison Wesley Longman
+  3rd Edition,
+  2009
+  
+\bibitem{Algorithms}
+  \label{itm:algorithm}
+  Robert Sedgewick, Kevein Wayne
+  \emph{ Algorithms}
+  Addison Wesley
+  4th Edition,
+  January, 2012
+
+\end{thebibliography}
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
