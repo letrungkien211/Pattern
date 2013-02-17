@@ -96,9 +96,10 @@ int main(int argc, char *argv[]){
 	    if(testOutputLeave(0) == trainLabel(l))
 		sumRate++;
 	}
-	cout << "KNN: "<< nk <<endl;
+	//cout << "KNN: "<< nk <<endl;
 	double rate = (double)sumRate/(trainData.rows());
-	cout << "Precision's rate: " << rate <<endl;
+	//cout << "Precision's rate: " << rate <<endl;
+	cout << nk << " " << rate <<endl;
 	if(bestRate < rate){
 	    bestRate = rate;
 	    bestK = nk;

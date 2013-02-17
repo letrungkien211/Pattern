@@ -48,6 +48,7 @@ int main(int argc, char *argv[]){
 
     /*Using Widrow-Hoff training method*/
     if(option == 1){
+	ofstream file("Weight1.txt");
 	// 1. Set the weights to small random values
 	weight.setRandom();
     
@@ -62,11 +63,14 @@ int main(int argc, char *argv[]){
 	    weight-= learningRate/100.0*trainData.transpose()*tmp;
 	    error+=tmp.squaredNorm()/200.0;
 	}
+	file << weight.transpose() <<endl;
 	cout << weight <<endl;
     }
     else {
+	ofstream file("Weight2.txt");
 	/*Calculate the weight by pseudo-inverse matrix*/
 	weight = (trainData.transpose()*trainData).inverse()*trainData.transpose()*trainLabel;
+	file << weight.transpose() <<endl;
 	cout <<weight <<endl;
     }
 

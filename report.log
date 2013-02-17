@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.16)  16 FEB 2013 21:03
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.16)  17 FEB 2013 09:22
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -331,24 +331,42 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 64.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 65.
- [1
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 67.
+ <1-2.png, id=15, 564.1075pt x 463.7325pt>
+File: 1-2.png Graphic file (type png)
+ <use 1-2.png>
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(./report.aux) ) 
+ []
+
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 82.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./1-2.png>] [2] (./report.
+aux) ) 
 Here is how much of TeX's memory you used:
- 5856 strings out of 493848
- 86136 string characters out of 1152823
- 182089 words of memory out of 3000000
- 9054 multiletter control sequences out of 15000+50000
- 11398 words of font info for 33 fonts, out of 3000000 for 9000
+ 5907 strings out of 493848
+ 86797 string characters out of 1152823
+ 186089 words of memory out of 3000000
+ 9097 multiletter control sequences out of 15000+50000
+ 12529 words of font info for 37 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,6n,58p,272b,292s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/sha
-re/texmf-texlive/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-texlive/
-fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on report.pdf (1 page, 36956 bytes).
+ 38i,7n,58p,663b,411s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share
+/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fon
+ts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/pala
+tino/uplr8a.pfb>
+Output written on report.pdf (2 pages, 113360 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 PDF objects out of 1000 (max. 8388607)
+ 7 named destinations out of 1000 (max. 500000)
+ 30 words of extra memory for PDF output out of 10000 (max. 10000000)
 
