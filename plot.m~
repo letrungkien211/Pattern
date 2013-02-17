@@ -1,2 +1,0 @@
-Train1 = load("data/Train1.txt");
-Train2 = load("data/Train2.txt");

@@ -16,4 +16,4 @@ $(TARGET): % : $(OBJS) %.o
 .cpp.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $< 
 clean:
-	$(RM)  $(TARGET) $(OBJS) *.o *~
+	$(RM)  $(TARGET) $(OBJS) *.o *~ *#*
