@@ -76,6 +76,10 @@ int main(int argc, char** argv){
     }
     cout << distance <<endl <<endl;
 
+    for(int i = 0; i < 12; i++){
+	distance(i) = 1/distance(i);
+    }
+
     for(int i = 0; i < 4; i++){
 	distance.row(i)/=distance.row(i).sum();
     }
